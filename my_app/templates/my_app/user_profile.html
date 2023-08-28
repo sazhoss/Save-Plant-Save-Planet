@@ -1,0 +1,67 @@
+{% extends 'my_app/base.html' %} {% load static %} {% block content %}
+<div class="profile-main-content mt-3">
+  <div class="profile-user-details shadow p-4">
+    <div class="profile-update d-flex justify-content-end">
+      <a href="{% url 'update_profile'%}" class="profile-update-btn"
+        >Update profile</a
+      >
+    </div>
+    <div class="profile-user-image d-flex justify-content-center">
+      <div class="profile-user-image-container">
+        <img src="{{request.user.image.url}}" alt="" />
+      </div>
+    </div>
+    <div class="profile-user-name d-flex align-items-center flex-column mb-2">
+      <h5 style="margin-bottom: 0">{{request.user.username}}</h5>
+      <p>{{request.user.email}}</p>
+    </div>
+    <div class="profile-user-description">
+      <p>Description:</p>
+      <p>{{request.user.description}}</p>
+    </div>
+  </div>
+  <div class="profile-user-projects shadow p-4">
+    <h5 class="mb-3">Posts</h5>
+    {% for user_post in user_posts %}
+    <div
+      class="profile-user-project-card shadow p-3 d-flex align-items-center justify-content-between mb-3"
+    >
+      <div class="d-flex align-items-center">
+        <div class="profile-user-project-card-image-container">
+          <img src="{{user_post.image.url}}" alt="" />
+        </div>
+        <div>
+          <p>{{user_post.description|truncatechars:10}}</p>
+          <p style="opacity: 0.5; font-style: italic; font-size: 14px">
+            Created on {{user_post.created_at|date:'j F Y'}}
+          </p>
+        </div>
+      </div>
+
+      <div class="profile-user-project-card-action">
+        <a href="{% url 'post_detail' user_post.id %}"
+          ><i class="fa-regular fa-eye"></i
+        ></a>
+        {% if user_post.is_active %}
+        <a href="{% url 'deactivate_post' user_post.id %}"
+          ><i class="fa-solid fa-power-off"></i
+        ></a>
+        {% else %}
+        <a
+          href="{% url 'activate_post' user_post.id %}"
+          style="background-color: #1abc9c"
+          ><i class="fa-solid fa-power-off"></i
+        ></a>
+        {% endif %}
+        <a href="{% url 'delete_post' user_post.id %}"
+          ><i class="fa-solid fa-trash-can"></i
+        ></a>
+        <a href="{% url 'update_post' user_post.id %}"
+          ><i class="fa-solid fa-pen"></i
+        ></a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{%endblock content %}

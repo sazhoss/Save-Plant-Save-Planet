@@ -1,0 +1,54 @@
+{% extends 'my_app/base.html' %} {% load static %} {% block content %}
+<div class="profile-user-details shadow p-4 mt-3" style="margin: 0 auto">
+  <div class="payment-method d-flex align-items-center flex-column p-3">
+    <div class="payment-method-logo-container shadow">
+      <img src={% static 'my_app/images/bkash-logo.png' %} />
+    </div>
+    <div class="payment-policy mt-3">
+      <h6>Payment Policy:</h6>
+      <ul style="margin-bottom: 0">
+        <li>
+          At first, You will need to send the donation to this bKash number:
+          {{contact.bkash_number}}.
+        </li>
+        <li>
+          Then fill up the following form with your bKash number (that you have
+          donated through), the transaction id and the donation amount.
+        </li>
+        <li>Finally, don't forget to submit the form.</li>
+      </ul>
+    </div>
+    <div class="login-main__content d-flex justify-content-center">
+      <form
+        action="{% url 'donation' post.id %}"
+        method="post"
+        class="login-form shadow mt-4 p-3"
+        style="width: 80%"
+      >
+        {% if messages %} {% for message in messages %}
+        <div class="alert alert-danger">{{message}}</div>
+        {% endfor %} {% endif %} {% csrf_token %}
+        <input
+          type="tel"
+          name="bkash_number"
+          id="bkash_number"
+          placeholder="Enter your bKash number"
+        />
+        <input
+          type="text"
+          name="transaction_id"
+          id="transaction_id"
+          placeholder="Enter the transaction id"
+        />
+        <input
+          type="number"
+          name="donation_amount"
+          id="donation_amount"
+          placeholder="Enter the donation amount"
+        />
+        <input type="submit" value="Donate" class="login-btn" />
+      </form>
+    </div>
+  </div>
+</div>
+{%endblock content %}

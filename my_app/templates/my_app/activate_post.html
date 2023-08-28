@@ -1,0 +1,16 @@
+{% extends 'my_app/base.html' %} {% load static %} {% block content %}
+<div class="signup-main__content mt-3 d-flex justify-content-center">
+  <form
+    action="{% url 'activate_post' post_id %}"
+    method="post"
+    class="signup-form shadow mt-4 p-3"
+  >
+    {% csrf_token %}
+    <p>Are you sure, you want to activate this post?</p>
+    <a href="{% url 'user_profile' %}" class="do-not-delete-btn mb-2 mt-3"
+      >No</a
+    >
+    <input name="yes" type="submit" value="Yes" class="signup-btn" />
+  </form>
+</div>
+{%endblock content %}

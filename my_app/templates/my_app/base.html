@@ -1,0 +1,77 @@
+{% load static %} {% load number_of_notifications %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- bootstrap cdn link (start) -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <!-- bootstrap cdn link (end) -->
+
+    <!-- font-awesome cdn link (start) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- font-awesome cdn link (end) -->
+
+    <link rel="stylesheet" href="{% static 'my_app/css/index.css' %}" />
+    <title>Save Plant Donation</title>
+  </head>
+  <body>
+    <!-- navbar (start) -->
+    <nav
+      class="plant-nav d-flex shadow py-2 px-3 mt-3 justify-content-between align-items-center"
+    >
+      <a href="{% url 'home' %}" class="plant-nav__logo">
+        <img src="{% static 'my_app/images/save_plant_logo.png' %}" alt="" />
+      </a>
+      <div class="plant-nav__mid__menu d-flex align-items-center">
+        {% if request.user.is_authenticated %}
+        <a href="{% url 'user_profile' %}">Profile</a>
+        <a
+          href="{% url 'received_donations' %}"
+          class="d-flex align-items-center"
+          >Donations {% if request.user.id|total_donations > 0 %}
+          <span class="donation-count"
+            >{{request.user.id|total_donations}}</span
+          >
+          {% endif %}
+        </a>
+        {% endif %}
+        <a href="{% url 'about_us' %}">About us</a>
+        <a href="{% url 'contact_us' %}">Contact us</a>
+      </div>
+      <div class="plant-nav__right__menu">
+        {% if request.user.is_authenticated %}
+        <a href="{% url 'notifications'%}" class="notification">
+          {% if request.user.id|total_notifications > 0 %}
+          <p class="notification-count">
+            {{request.user.id|total_notifications}}
+          </p>
+          {% endif %}
+          <i class="fa-regular fa-bell" style="font-size: 20px"></i
+        ></a>
+        <a href="{% url 'logout' %}">Logout</a>
+        {% else %}
+        <a href="{% url 'signup' %}">Signup</a>
+        <a href="{% url 'login' %}">Login</a>
+        {% endif %}
+      </div>
+    </nav>
+    <!-- navbar (end) -->
+    {% block content %}{% endblock content %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'my_app/js/index.js' %}"></script>
+  </body>
+</html>

@@ -1,0 +1,357 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+p {
+  margin-bottom: 0;
+}
+
+.plant-nav {
+  border-radius: 5px;
+  width: 80%;
+  margin: 0 auto;
+  position: sticky;
+  top: 0;
+  z-index: 10000;
+}
+.plant-nav__logo {
+  width: 60px;
+  height: 60px;
+  overflow: hidden;
+  border-radius: 100%;
+}
+.plant-nav__logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.plant-nav__mid__menu a:not(:last-of-type),
+.plant-nav__right__menu a:not(:last-of-type) {
+  margin-right: 15px;
+}
+
+.plant-nav__mid__menu a,
+.plant-nav__right__menu a,
+.main-content__right a {
+  text-decoration: none;
+  color: #000;
+}
+.main-content {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+.main-content__right,
+.main-content__left {
+  width: 25%;
+}
+.main-content__mid {
+  width: 50%;
+}
+.main-content__right {
+  max-height: 170px;
+  position: sticky;
+  top: 90px;
+}
+.main-content__left {
+  position: sticky;
+  max-height: 500px;
+  top: 90px;
+}
+.main-content__right,
+.main-content__left {
+  border-radius: 5px;
+}
+.main-content__left__recent__post_card {
+  position: relative;
+  border-radius: 5px;
+}
+.main-content__left__recent__post__card_image {
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+  border-radius: 100%;
+  position: absolute;
+  top: -10px;
+  left: -10px;
+}
+.main-content__left__recent__post__card_image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.main-content__mid__welcome__nav {
+  border-radius: 5px;
+}
+.main-content__mid__welcome__nav__user__image {
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+  border-radius: 100%;
+  margin-right: 7px;
+}
+.main-content__mid__welcome__nav__user__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.add-new-post__btn {
+  text-decoration: none;
+  color: #fff;
+  background-color: #1abc9c;
+  padding: 10px;
+  border-radius: 5px;
+}
+.feed-card {
+  width: 100%;
+  border-radius: 5px;
+}
+.feed-card__user__image {
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+  border-radius: 100%;
+  margin-right: 7px;
+}
+.feed-card__user__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.feed-card__image {
+  width: 100%;
+  min-height: 300px;
+  max-height: 350px;
+  overflow: hidden;
+}
+.feed-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.donate-btn {
+  text-decoration: none;
+  color: #fff;
+  background-color: #ff6b6b;
+  padding: 10px;
+  border-radius: 5px;
+}
+.feed-card__tag__btn {
+  background-color: #1abc9c;
+  padding: 3px 9px;
+  border: none;
+  border-radius: 20px;
+  color: #fff;
+}
+
+/* login */
+.login-form,
+.signup-form,
+.add-new-post-form {
+  width: 350px;
+  border-radius: 5px;
+}
+.login-form input,
+.signup-form input,
+.add-new-post-form input,
+.add-new-post-form textarea,
+.add-new-post-form select {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 3px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.login-form input::placeholder,
+.signup-form input::placeholder,
+.add-new-post-form input::placeholder,
+.add-new-post-form textarea::placeholder,
+.add-new-post-form select::placeholder {
+  font-style: italic;
+  opacity: 0.5;
+}
+.login-form input:focus,
+.signup-form input:focus,
+.add-new-post-form input:focus,
+.add-new-post-form textarea:focus,
+.add-new-post-form select:focus {
+  border: 1px solid #ddd;
+  outline: none;
+}
+.login-btn,
+.signup-btn,
+.add-new-post-btn {
+  background-color: #1abc9c;
+  color: #fff;
+}
+
+/* user-profile */
+
+.profile-main-content {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  gap: 10px;
+}
+
+.profile-user-details,
+.profile-user-projects {
+  width: 50%;
+}
+.profile-user-details,
+.profile-user-projects {
+  border-radius: 5px;
+}
+.profile-user-image {
+  padding: 10px;
+  border-radius: 5px;
+}
+.profile-user-image-container {
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 100%;
+}
+.profile-user-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.profile-user-details {
+  position: sticky;
+  top: 90px;
+}
+.profile-user-description {
+  font-style: italic;
+  text-align: justify;
+}
+.profile-update-btn {
+  text-decoration: none;
+  color: #fff;
+  background-color: #1abc9c;
+  padding: 10px;
+  border-radius: 5px;
+}
+.profile-user-project-card {
+  border-radius: 5px;
+}
+.profile-user-project-card-image-container {
+  width: 60px;
+  height: 60px;
+  overflow: hidden;
+  border-radius: 100%;
+  margin-right: 7px;
+}
+.profile-user-project-card-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.profile-user-project-card-action {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.profile-user-project-card-action a {
+  text-decoration: none;
+  color: #fff;
+  background-color: #1abc9c;
+  padding: 10px;
+  border-radius: 5px;
+}
+.profile-user-project-card-action a:first-of-type {
+  background-color: #1abc9c;
+}
+.profile-user-project-card-action a:nth-of-type(2) {
+  background-color: #fc5c65;
+}
+.profile-user-project-card-action a:nth-of-type(3) {
+  background-color: #eb3b5a;
+}
+
+.do-not-delete-btn {
+  text-decoration: none;
+  color: #fff;
+  background-color: #eb3b5a;
+  padding: 5px;
+  border-radius: 5px;
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+.detail-feed-card {
+  width: 50%;
+}
+
+.payment-method-logo-container {
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  border-radius: 5px;
+}
+.payment-method {
+  border-radius: 5px;
+}
+.payment-method-logo-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.payment-policy {
+  font-style: italic;
+  opacity: 0.7;
+}
+.donated-project {
+  border-radius: 5px;
+}
+.donated_project_image {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  overflow: hidden;
+  margin-right: 10px;
+}
+.donated_project_image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.notification {
+  position: relative;
+}
+.notification-count {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  background-color: #eb3b5a;
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  top: -10px;
+  right: -12px;
+  color: #fff;
+}
+.donation-count {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #eb3b5a;
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  top: -10px;
+  right: -12px;
+  color: #fff;
+}

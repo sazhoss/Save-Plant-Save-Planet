@@ -1,0 +1,120 @@
+{% extends 'my_app/base.html' %} {% load static %} {% block content %}
+<div class="main-content mt-3">
+  <div class="main-content__right shadow p-3 d-flex flex-column">
+    <h5>Categories</h5>
+    <a href="{% url 'home' %}">All</a>
+    {% for category in all_categories %}
+    <a href="{% url 'home' %}?category={{category.category_name}}"
+      >{{category.category_name}}</a
+    >
+    {% endfor %}
+  </div>
+
+  <div class="main-content__mid">
+    {% if messages %} {% for message in messages %}
+    <div class="alert alert-success vanish">{{message}}</div>
+    {% endfor %} {% endif %}
+    <script>
+      const p = document.querySelector(".vanish");
+      setTimeout(() => {
+        p.parentNode.removeChild(p);
+      }, 3000);
+    </script>
+    {% if request.user.is_authenticated %}
+    <div
+      class="main-content__mid__welcome__nav mb-3 shadow p-3 d-flex justify-content-between align-items-center"
+    >
+      <div
+        class="main-content__mid__welcome__nav__user d-flex align-items-center"
+      >
+        <div class="main-content__mid__welcome__nav__user__image">
+          <img src="{{request.user.image.url}}" alt="" />
+        </div>
+        <p>{{request.user.username}}</p>
+      </div>
+      <div class="add-new-post">
+        <a href="{% url 'add_new_post' %}" class="add-new-post__btn"
+          >Add new post</a
+        >
+      </div>
+    </div>
+    {% endif %}
+    <div class="main-content__mid__feed">
+      {% if all_posts %} {% for post in all_posts %}
+      <div class="feed-card shadow mb-3">
+        <div
+          class="feed-card__user__image__container p-2 d-flex align-items-center justify-content-between"
+        >
+          <div class="d-flex align-items-center">
+            <div class="feed-card__user__image">
+              <img src="{{post.uploader.image.url}}" alt="" />
+            </div>
+            <div class="d-flex flex-column">
+              <p>{{post.uploader.username}}</p>
+              <p style="opacity: 0.5; font-style: italic; font-size: 14px">
+                Created on {{post.created_at|date:'j F Y'}}
+              </p>
+            </div>
+          </div>
+          <div class="donate-button">
+            <a href="{% url 'donation' post.id %}" class="donate-btn">
+              <i class="fa-solid fa-heart"></i> Donate</a
+            >
+          </div>
+        </div>
+        <div class="feed-card__image">
+          <img src="{{post.image.url}}" alt="" />
+        </div>
+        <div class="feed-card__description p-3">
+          <p class="d-inline">{{post.description|truncatechars:50}}</p>
+          {% if post.description|length > 50 %}
+          <span
+            ><a href="{% url 'post_detail' post.id %}" style="color: #1abc9c"
+              >See more</a
+            ></span
+          >
+          {% endif %}
+        </div>
+        <div class="feed-card__tags px-3 pb-3">
+          <button class="feed-card__tag__btn">
+            {{post.category.category_name}}
+          </button>
+        </div>
+      </div>
+      {% endfor %} {% else %}
+      <h4
+        style="
+          font-style: italic;
+          opacity: 0.5;
+          text-align: center;
+          margin-top: 20px;
+        "
+      >
+        No available posts.
+      </h4>
+      {% endif %}
+    </div>
+  </div>
+  <div class="main-content__left shadow py-3 px-4">
+    <h5 class="mb-4">Recent posts</h5>
+    {% for recent_post in recent_posts %}
+    <div
+      class="main-content__left__recent__post_card d-flex align-items-center shadow p-2 mb-4"
+    >
+      <div class="main-content__left__recent__post__card_image">
+        <img src="{{recent_post.uploader.image.url}}" alt="" />
+      </div>
+      <a
+        href="{% url 'post_detail' recent_post.id %}"
+        style="margin-left: 40px; text-decoration: none; color: #000"
+      >
+        <p>{{recent_post.description|truncatechars:10}}</p>
+        <p style="opacity: 0.5; font-style: italic; font-size: 14px">
+          Created on {{recent_post.created_at|date:'j F Y'}}
+        </p>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock content %}

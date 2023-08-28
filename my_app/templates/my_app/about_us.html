@@ -1,0 +1,17 @@
+{% extends 'my_app/base.html' %} {% load static %} {% block content %}
+<div class="profile-user-details shadow p-4 mt-3" style="margin: 0 auto">
+  <div class="profile-user-image d-flex justify-content-center">
+    <div class="profile-user-image-container">
+      <img src="{{organization.image.url}}" alt="" />
+    </div>
+  </div>
+  <div class="profile-user-name d-flex align-items-center flex-column mb-2">
+    <h5 style="margin-bottom: 0">{{organization.organization_name}}</h5>
+    <p>{{organization.email}}</p>
+  </div>
+  <div class="profile-user-description">
+    <p>Description:</p>
+    <p>{{organization.description}}</p>
+  </div>
+</div>
+{%endblock content %}

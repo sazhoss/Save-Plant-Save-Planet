@@ -1,0 +1,15 @@
+{% extends 'my_app/base.html' %} {% load static %} {% block content %}
+<div class="signup-main__content mt-3 d-flex justify-content-center">
+  <form
+    action="{% url 'signup' %}"
+    method="post"
+    class="signup-form shadow mt-4 p-3"
+  >
+    {% csrf_token %} {% for field in signup_form %}
+    {{field.label}}{{field}}{{field.errors}}<br />
+    {% endfor %}
+    <input type="submit" value="Signup" class="signup-btn" />
+    <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+  </form>
+</div>
+{%endblock content %}

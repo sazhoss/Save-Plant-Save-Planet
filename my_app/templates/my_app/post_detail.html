@@ -1,0 +1,37 @@
+{% extends 'my_app/base.html' %} {% load static %} {% block content %}
+<div class="signup-main__content mt-3 d-flex justify-content-center">
+  <div class="feed-card detail-feed-card shadow mb-3">
+    <div
+      class="feed-card__user__image__container p-2 d-flex align-items-center justify-content-between"
+    >
+      <div class="d-flex align-items-center">
+        <div class="feed-card__user__image">
+          <img src="{{post.uploader.image.url}}" alt="" />
+        </div>
+        <div class="d-flex flex-column">
+          <p>{{post.uploader.username}}</p>
+          <p style="opacity: 0.5; font-style: italic; font-size: 14px">
+            Created on {{post.created_at|date:'j F Y'}}
+          </p>
+        </div>
+      </div>
+      <div class="donate-button">
+        <a href="{% url 'donation' post.id %}" class="donate-btn">
+          <i class="fa-solid fa-heart"></i> Donate</a
+        >
+      </div>
+    </div>
+    <div class="feed-card__image">
+      <img src="{{post.image.url}}" alt="" />
+    </div>
+    <div class="feed-card__description p-3">
+      <p class="d-inline">{{post.description}}</p>
+    </div>
+    <div class="feed-card__tags px-3 pb-3">
+      <button class="feed-card__tag__btn">
+        {{post.category.category_name}}
+      </button>
+    </div>
+  </div>
+</div>
+{%endblock content %}

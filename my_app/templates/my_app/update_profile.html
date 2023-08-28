@@ -1,0 +1,16 @@
+{% extends 'my_app/base.html' %} {% load static %} {% block content %}
+<div class="add-new-post-main__content mt-3 d-flex justify-content-center">
+  <form
+    action="{% url 'update_profile'%}"
+    method="post"
+    class="add-new-post-form shadow mt-4 p-3"
+    style="white-space: wrap; overflow: hidden; text-overflow: ellipsis"
+    enctype="multipart/form-data"
+  >
+    {% csrf_token %} {% for field in update_profile_form %}
+    {{field.label}}{{field}}{{field.errors}}<br />
+    {% endfor %}
+    <input type="submit" value="Update" class="add-new-post-btn" />
+  </form>
+</div>
+{%endblock content %}
